@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Iqthalmic
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list style="background-color:blueviolet">
+        <ion-item>
+      <div item-left >
+        <input ion-input type="text" [(ngModel)]="Listtext" (input)="FilterList()">
+      </div>
+      <div style="text-align:center;">
+        <select ion-select [(ngModel)]="Listselect">
+            <option ion-option value="Name" selected>Filter By Product Name</option>
+            <option value="Active">Filter By Active Ingredient</option>
+            <option value="Company">Filter By Company</option>
+        </select>
+            </div>
+    </ion-item>
+        <hr>
+        <hr>
+    </ion-list>
+    
+  <ion-list *ngIf="Items" >
+    <ion-item  *ngFor="let Item of Items">
+      <ion-avatar item-left >
+        <img src="{{Item.Image}}">
+      </ion-avatar>
+      <div style="text-align:center;">
+      <h2 style="color: darksalmon;">{{Item.Name}}</h2>
+      <p style="color: darkolivegreen;">{{Item.Company}}</p>
+      </div>
+      <button ion-button item-right color="primary" (click)="ViewPage(Item)" >View</button>
+    </ion-item>
+  </ion-list>
+    <div *ngIf="(Items)?.length==0" style="text-align:center;"><h1 style="font-size: 16; color: cadetblue;">No Data Found</h1></div>
+</ion-content>
